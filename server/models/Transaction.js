@@ -2,13 +2,23 @@ const mongoose = require("mongoose");
 
 const transactionSchema = new mongoose.Schema(
 {
-    to:String,
-    amount:Number,
-    txHash:String,
-    status:String
+    action: {
+        type: String,
+        required: true
+    },
+
+    description: {
+        type: String,
+        required: true
+    },
+
+    txHash: {
+        type: String,
+        default: ""
+    }
 },
 {
-    timestamps:true
+    timestamps: true
 });
 
 module.exports = mongoose.model(

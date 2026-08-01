@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 import Policies from "./pages/Policies";
@@ -9,14 +9,16 @@ import Settings from "./pages/Settings";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/policies" element={<Policies />} />
-      <Route path="/transactions" element={<Transactions />} />
-      <Route path="/killswitch" element={<KillSwitch />} />
-      <Route path="/agent" element={<Agent />} />
-      <Route path="/settings" element={<Settings />} />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/policies" element={<Policies />} />
+        <Route path="/transactions" element={<Transactions />} />
+        <Route path="/killswitch" element={<KillSwitch />} />
+        <Route path="/agent" element={<Agent />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
