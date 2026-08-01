@@ -46,3 +46,9 @@ export const policyData = [
   { name: "Allowed", value: 75 },
   { name: "Blocked", value: 25 },
 ];
+export const policyDetails = {
+  dailyLimit: "2 ETH",
+  allowedWallets: 4,
+  freezeStatus: "Disabled",
+  aiProtection: "Enabled",
+};
