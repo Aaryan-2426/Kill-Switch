@@ -1,10 +1,22 @@
+import { Routes, Route } from "react-router-dom";
+
+import Dashboard from "./pages/Dashboard";
+import Policies from "./pages/Policies";
+import Transactions from "./pages/Transactions";
+import KillSwitch from "./pages/KillSwitch";
+import Agent from "./pages/Agent";
+import Settings from "./pages/Settings";
+
 function App() {
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <h1 className="text-5xl font-bold text-cyan-400">
-        Kill Switch 🚀
-      </h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/policies" element={<Policies />} />
+      <Route path="/transactions" element={<Transactions />} />
+      <Route path="/killswitch" element={<KillSwitch />} />
+      <Route path="/agent" element={<Agent />} />
+      <Route path="/settings" element={<Settings />} />
+    </Routes>
   );
 }
 
