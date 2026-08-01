@@ -3,7 +3,7 @@ const walletRoutes = require("./routes/walletRoutes");
 const freezeRoutes = require("./routes/freezeRoutes");
 const policyRoutes = require("./routes/policyRoutes");
 const transactionRoutes=require("./routes/transactionRoutes");
-const agentRoutes=require("./routes/agentRoutes");
+const agentRoutes = require("./routes/agentRoutes");
 
 
 const express = require("express");

@@ -1,28 +1,75 @@
-const Log=require("../models/Log");
-exports.startAgent=async(req,res)=>{
+const { analyzePrompt } = require("../agents/riskAgent");
+const { checkPolicy } = require("../agents/policyEngine");
+const contract = require("../config/blockchain");
 
-await Log.create({
-action:"AGENT_START",
-description:"AI Agent Started"
-});
+const Transaction = require("../models/Transaction");
+const Log = require("../models/Log");
+const Alert = require("../models/Alert");
 
-res.json({
-success:true,
-message:"AI Agent Started"
-});
+exports.analyze = async (req, res) => {
 
-};
+    try {
 
-exports.stopAgent=async(req,res)=>{
+        const { prompt } = req.body;
 
-await Log.create({
-action:"AGENT_STOP",
-description:"AI Agent Stopped"
-});
+        const ai = analyzePrompt(prompt);
 
-res.json({
-success:true,
-message:"AI Agent Stopped"
-});
+        const wallet = {
+            frozen: await contract.frozen()
+        };
+
+        const policy = checkPolicy(wallet, ai);
+
+        let autoFrozen = false;
+
+        if (ai.risk >= 80 && !wallet.frozen) {
+
+            const tx = await contract.freeze();
+
+            await tx.wait();
+
+            autoFrozen = true;
+
+            await Transaction.create({
+                action: "AUTO FREEZE",
+                description: ai.reason,
+                txHash: tx.hash
+            });
+
+            await Log.create({
+                action: "AUTO FREEZE",
+                description: ai.reason
+            });
+
+            await Alert.create({
+                level: "HIGH",
+                message: `AI blocked transaction: ${ai.reason}`
+            });
+
+        }
+
+        res.json({
+
+            success: true,
+
+            ai,
+
+            policy,
+
+            autoFrozen
+
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+
+            success: false,
+
+            message: err.message
+
+        });
+
+    }
 
 };

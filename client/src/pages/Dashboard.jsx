@@ -1,3 +1,5 @@
+import MainLayout from "../layouts/MainLayout";
+
 import WalletCard from "../components/Cards/WalletCard";
 import BalanceCard from "../components/Cards/BalanceCard";
 import StatusCard from "../components/Cards/StatusCard";
@@ -10,7 +12,8 @@ import TransactionTable from "../components/Tables/TransactionTable";
 
 function Dashboard() {
   return (
-    <>
+    <MainLayout>
+
       <div className="mb-8">
         <h1 className="text-4xl font-bold">
           Dashboard
@@ -39,7 +42,8 @@ function Dashboard() {
       </div>
 
       <TransactionTable />
-    </>
+
+    </MainLayout>
   );
 }
 

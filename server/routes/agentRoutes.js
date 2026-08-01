@@ -1,14 +1,11 @@
-const express=require("express");
+const express = require("express");
 
-const router=express.Router();
+const router = express.Router();
 
-const{
-startAgent,
-stopAgent
-}=require("../controllers/agentController");
+const {
+    analyze
+} = require("../controllers/agentController");
 
-router.post("/start",startAgent);
+router.post("/analyze", analyze);
 
-router.post("/stop",stopAgent);
-
-module.exports=router;
+module.exports = router;

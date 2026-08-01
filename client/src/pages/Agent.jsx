@@ -1,32 +1,40 @@
 import MainLayout from "../layouts/MainLayout";
-
-import AgentStatus from "../components/Agent/AgentStatus";
-import AgentControls from "../components/Agent/AgentControls";
-import AgentLogs from "../components/Agent/AgentLogs";
+import PromptBox from "../components/Agent/PromptBox";
+import DecisionCard from "../components/Agent/DecisionCard";
+import { useState } from "react";
 
 function Agent() {
-  return (
-    <MainLayout>
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold">
-          AI Security Agent
-        </h1>
 
-        <p className="text-gray-400 mt-2">
-          Monitor wallet activity using AI.
-        </p>
-      </div>
+    const [result, setResult] = useState(null);
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <AgentStatus />
-        <AgentControls />
-      </div>
+    return (
 
-      <div className="mt-8">
-        <AgentLogs />
-      </div>
-    </MainLayout>
-  );
+        <MainLayout>
+
+            <div className="mb-8">
+
+                <h1 className="text-4xl font-bold text-cyan-400">
+                    AI Security Agent
+                </h1>
+
+                <p className="text-gray-400 mt-2">
+                    AI analyzes every transaction before execution.
+                </p>
+
+            </div>
+
+            <PromptBox setResult={setResult} />
+
+            <div className="mt-8">
+
+                <DecisionCard result={result} />
+
+            </div>
+
+        </MainLayout>
+
+    );
+
 }
 
 export default Agent;
