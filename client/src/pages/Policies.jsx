@@ -1,5 +1,6 @@
 import MainLayout from "../layouts/MainLayout";
-
+import { useState } from "react";
+import LimitModal from "../components/Policies/LimitModal";
 import DailyLimitCard from "../components/Cards/DailyLimitCard";
 import AllowedWalletCard from "../components/Cards/AllowedWalletCard";
 import FreezeCard from "../components/Cards/FreezeCard";
@@ -7,6 +8,7 @@ import ProtectionCard from "../components/Cards/ProtectionCard";
 import PolicyControls from "../components/Common/PolicyControls";
 
 function Policies() {
+  const [openLimitModal, setOpenLimitModal] = useState(false);
   return (
     <MainLayout>
       {/* Page Header */}
@@ -25,7 +27,12 @@ function Policies() {
         <FreezeCard />
         <ProtectionCard />
       </div>
-      <PolicyControls />
+      <PolicyControls
+       openLimitModal={() => setOpenLimitModal(true)}/>
+      <LimitModal
+        open={openLimitModal}
+        onClose={() => setOpenLimitModal(false)}
+      />
     </MainLayout>
   );
 }

@@ -36,7 +36,7 @@ function TransactionTable() {
       className="bg-zinc-900 rounded-xl p-6 border border-zinc-800 shadow-lg mt-8"
     >
 
-      <h2 className="text-xl font-semibold mb-6 text-white">
+      <h2 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
         Recent Transactions
       </h2>
 

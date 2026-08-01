@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { analyzePrompt } from "../../services/agentService";
+import toast from "react-hot-toast";
 
 function PromptBox({ setResult }) {
 
@@ -17,7 +18,7 @@ function PromptBox({ setResult }) {
 
         } catch (err) {
 
-            alert(err.message);
+            toast.error(err.message);
 
         }
 
@@ -25,7 +26,7 @@ function PromptBox({ setResult }) {
 
     return (
 
-        <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
+        <div className="bg-zinc-900 border border-cyan-500/20 rounded-xl focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300">
 
             <textarea
 
@@ -45,7 +46,10 @@ function PromptBox({ setResult }) {
 
                 onClick={submit}
 
-                className="mt-4 px-6 py-3 bg-cyan-500 rounded-lg text-black font-semibold hover:bg-cyan-400"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600
+hover:from-cyan-400 hover:to-blue-500
+hover:scale-105
+transition-all duration-300"
 
             >
                 Analyze

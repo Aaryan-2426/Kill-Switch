@@ -4,6 +4,9 @@ const freezeRoutes = require("./routes/freezeRoutes");
 const policyRoutes = require("./routes/policyRoutes");
 const transactionRoutes=require("./routes/transactionRoutes");
 const agentRoutes = require("./routes/agentRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const logRoutes = require("./routes/logRoutes");
+const alertRoutes = require("./routes/alertRoutes");
 
 
 const express = require("express");
@@ -24,6 +27,9 @@ app.use("/", freezeRoutes);
 app.use("/policy", policyRoutes);
 app.use("/transactions",transactionRoutes);
 app.use("/agent",agentRoutes);
+app.use("/dashboard", dashboardRoutes);
+app.use("/logs", logRoutes);
+app.use("/alerts", alertRoutes);
 
 
 // Test Route

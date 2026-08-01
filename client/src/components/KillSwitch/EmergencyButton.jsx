@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { FaPowerOff } from "react-icons/fa";
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function EmergencyButton() {
 
@@ -15,12 +16,12 @@ function EmergencyButton() {
 
       const res = await axios.post("http://localhost:5000/freeze");
 
-      alert(res.data.message);
+      toast.success(res.data.message);
       window.location.reload();
 
     } catch (err) {
 
-      alert(err.response?.data?.message || err.message);
+      toast.error(err.response?.data?.message || err.message);
 
     } finally {
 
@@ -38,12 +39,12 @@ function EmergencyButton() {
 
       const res = await axios.post("http://localhost:5000/unfreeze");
 
-      alert(res.data.message);
+      toast.success(res.data.message);
       window.location.reload();
 
     } catch (err) {
 
-      alert(err.response?.data?.message || err.message);
+      toast.error(err.response?.data?.message || err.message);
 
     } finally {
 
@@ -89,14 +90,16 @@ function EmergencyButton() {
 
       <button
         onClick={unfreezeWallet}
-        className="mt-6 px-6 py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white"
+        className="mt-6 px-6 py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white hover:shadow-red-500/60
+hover:scale-105
+transition-all duration-300"
       >
         UNFREEZE
       </button>
 
-      <p className="text-red-400 mt-6 text-lg">
-        Emergency Kill Switch
-      </p>
+      <span className="text-2xl font-bold tracking-[0.25em] text-red-400">
+        EMERGENCY KILL SWITCH
+      </span>
 
     </div>
   );

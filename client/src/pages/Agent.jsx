@@ -13,11 +13,11 @@ function Agent() {
 
             <div className="mb-8">
 
-                <h1 className="text-4xl font-bold text-cyan-400">
+                <h1 className="text-5xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
                     AI Security Agent
                 </h1>
 
-                <p className="text-gray-400 mt-2">
+                <p className="text-gray-300 text-lg mt-2">
                     AI analyzes every transaction before execution.
                 </p>
 

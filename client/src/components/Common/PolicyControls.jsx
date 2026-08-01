@@ -6,7 +6,7 @@ import {
   FaPowerOff,
 } from "react-icons/fa";
 
-function PolicyControls() {
+function PolicyControls({ openLimitModal }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -19,7 +19,9 @@ function PolicyControls() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-        <button className="flex items-center justify-center gap-3 bg-cyan-500 hover:bg-cyan-600 text-black font-semibold py-3 rounded-lg transition">
+        <button
+        onClick={openLimitModal}
+        className="flex items-center justify-center gap-3 bg-cyan-500 hover:bg-cyan-600 text-black font-semibold py-3 rounded-lg transition">
           <FaEdit />
           Edit Daily Limit
         </button>

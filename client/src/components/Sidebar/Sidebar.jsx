@@ -19,7 +19,7 @@ const menuItems = [
 
 function Sidebar() {
   return (
-    <aside className="w-64 min-h-[calc(100vh-64px)] bg-zinc-900 border-r border-zinc-800 p-5">
+    <aside className="w-64 min-h-[calc(100vh-64px)] bg-zinc-900/80 backdrop-blur-lg border-r border-cyan-500/20 p-5">
       <nav className="space-y-3">
         {menuItems.map((item) => (
           <NavLink
@@ -27,15 +27,18 @@ function Sidebar() {
             to={item.path}
             end={item.path === "/"}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
+              `flex items-center gap-3 px-5 py-3 rounded-xl transition-all duration-300 ${
                 isActive
-                  ? "bg-cyan-500 text-black font-semibold"
-                  : "text-gray-300 hover:bg-zinc-800 hover:text-cyan-400"
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-lg shadow-cyan-500/30"
+                  : "text-gray-300 hover:bg-zinc-800 hover:text-cyan-400 hover:translate-x-2"
               }`
             }
           >
-            {item.icon}
-            {item.name}
+            <span className="text-xl">
+              {item.icon}
+            </span>
+
+            <span>{item.name}</span>
           </NavLink>
         ))}
       </nav>

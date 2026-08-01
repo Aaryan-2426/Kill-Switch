@@ -39,10 +39,13 @@ function BalanceCard() {
 
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.98 }}
-      className="bg-zinc-900 rounded-xl p-6 border border-zinc-800 shadow-lg hover:border-cyan-500 transition-all duration-300"
-    >
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.4 }}
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.98 }}
+  className="bg-zinc-900 rounded-xl p-6 border border-zinc-800 shadow-lg hover:shadow-cyan-500/40 hover:border-cyan-500 hover:-translate-y-1 transition-all duration-300"
+>
 
       <div className="flex items-center justify-between">
         <h3 className="text-gray-400">Balance</h3>
@@ -50,7 +53,15 @@ function BalanceCard() {
       </div>
 
       <p className="text-cyan-400 mt-3 font-semibold">
-        {balance} ETH
+        {balance==="Loading..." ? (
+
+<div className="animate-pulse h-6 w-24 rounded bg-zinc-700"/>
+
+) : (
+
+balance
+
+)} ETH
       </p>
 
     </motion.div>

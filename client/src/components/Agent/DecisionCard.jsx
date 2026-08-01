@@ -18,14 +18,17 @@ function DecisionCard({ result }) {
 
         <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800">
 
-            <h2 className="text-2xl font-bold mb-6">
+            <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 AI Decision
             </h2>
 
             <div className="space-y-3">
 
                 <p>
-                    <strong>Risk:</strong> {result.ai.risk}%
+                    <strong>Risk:</strong>{" "}
+                    {result.ai.risk > 70 ? "🔴 HIGH" :
+                    result.ai.risk > 30 ? "🟡 MEDIUM" :
+                    "🟢 LOW"} ({result.ai.risk}%)
                 </p>
 
                 <p>
@@ -38,7 +41,9 @@ function DecisionCard({ result }) {
 
                 <p>
                     <strong>Policy:</strong>{" "}
-                    {result.policy.allowed ? "PASS ✅" : "BLOCK ❌"}
+                    {result.policy.allowed
+                    ? "🟢 PASS"
+                    : "🔴 BLOCK"}
                 </p>
 
                 <p>
