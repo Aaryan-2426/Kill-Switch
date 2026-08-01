@@ -1,11 +1,33 @@
 import MainLayout from "../layouts/MainLayout";
 
+import EmergencyButton from "../components/KillSwitch/EmergencyButton";
+import StatusCard from "../components/KillSwitch/StatusCard";
+import WarningCard from "../components/KillSwitch/WarningCard";
+import ActivityLog from "../components/KillSwitch/ActivityLog";
+
 function KillSwitch() {
   return (
     <MainLayout>
-      <h1 className="text-4xl font-bold">
-        Kill Switch
-      </h1>
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-red-500">
+          Emergency Kill Switch
+        </h1>
+
+        <p className="text-gray-400 mt-2">
+          Instantly freeze wallet activity during suspicious behavior.
+        </p>
+      </div>
+
+      <EmergencyButton />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        <StatusCard />
+        <WarningCard />
+      </div>
+
+      <div className="mt-8">
+        <ActivityLog />
+      </div>
     </MainLayout>
   );
 }

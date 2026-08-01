@@ -52,3 +52,9 @@ export const policyDetails = {
   freezeStatus: "Disabled",
   aiProtection: "Enabled",
 };
+export const settingsData = {
+  network: "Sepolia Testnet",
+  wallet: "MetaMask Connected",
+  theme: "Dark",
+  notifications: "Enabled",
+};
