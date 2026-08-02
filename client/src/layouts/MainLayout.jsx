@@ -11,7 +11,7 @@ function MainLayout({ children }) {
 
         <Sidebar />
 
-        <main className="flex-1 bg-zinc-950 p-8 overflow-y-auto">
+        <main className="flex-1 ml-72 p-8">
           {children}
         </main>
 

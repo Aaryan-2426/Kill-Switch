@@ -1,5 +1,6 @@
 const contract = require("../config/blockchain");
 const { ethers } = require("ethers");
+const provider = contract.runner.provider;
 
 exports.getWalletData = async (req, res) => {
   try {
@@ -8,12 +9,11 @@ exports.getWalletData = async (req, res) => {
     const dailyLimit = await contract.dailyLimit();
 
     const balance = await contract.runner.provider.getBalance(owner);
-
     res.json({
       success: true,
       owner,
       frozen,
-      dailyLimit: dailyLimit.toString(),
+      dailyLimit: ethers.formatEther(dailyLimit),
       balance: ethers.formatEther(balance),
     });
 

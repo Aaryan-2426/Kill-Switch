@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
 function DailyLimitCard() {
 
   const [limit, setLimit] = useState("Loading...");
@@ -16,7 +17,6 @@ function DailyLimitCard() {
         const res = await axios.get("http://localhost:5000/wallet");
 
         setLimit(res.data.dailyLimit);
-
       } catch (err) {
 
         console.log(err);
@@ -47,11 +47,10 @@ function DailyLimitCard() {
       </div>
 
       <p className="text-cyan-400 text-2xl font-bold mt-4">
-
-        {limit}
-
+        {limit === "Loading..."
+          ? "Loading..."
+          : `${Number(limit).toFixed(0)} ETH`}
       </p>
-
     </motion.div>
 
   );

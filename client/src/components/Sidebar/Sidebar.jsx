@@ -19,8 +19,19 @@ const menuItems = [
 
 function Sidebar() {
   return (
-    <aside className="w-64 min-h-[calc(100vh-64px)] bg-zinc-900/80 backdrop-blur-lg border-r border-cyan-500/20 p-5">
-      <nav className="space-y-3">
+    <aside
+    className="
+    fixed
+    left-0
+    top-20
+    w-72
+    h-[calc(100vh-80px)]
+    bg-zinc-950
+    border-r
+    border-zinc-800
+    "
+    >
+      <nav className="space-y-3 p-5">
         {menuItems.map((item) => (
           <NavLink
             key={item.path}

@@ -37,7 +37,21 @@ function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 h-20 bg-zinc-900/80 backdrop-blur-lg border-b border-cyan-500/20 shadow-lg flex items-center justify-between px-8">
+    <header
+      className="
+      sticky
+      top-0
+      z-50
+      h-20
+      bg-zinc-950
+      border-b
+      border-zinc-800
+      flex
+      items-center
+      justify-between
+      px-8
+      "
+    >
       {/* Left */}
       <div>
         <h1 className="text-3xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">

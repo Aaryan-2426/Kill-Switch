@@ -7,7 +7,7 @@ contract AgentWallet is Ownable {
 
     address public aiAgent;
 
-    uint256 public dailyLimit = 100;
+    uint256 public dailyLimit = 100 ether;
 
     uint256 public spentToday;
 
@@ -25,8 +25,8 @@ contract AgentWallet is Ownable {
     event AgentChanged(address indexed newAgent);
     event TransferExecuted(address indexed to,uint256 amount);
 
-    constructor() Ownable(msg.sender){
-        lastResetDay=block.timestamp/1 days;
+    constructor() Ownable(msg.sender) {
+    lastResetDay = block.timestamp / 1 days;
     }
 
     function changeAgent(address _agent) external onlyOwner{
@@ -35,7 +35,7 @@ contract AgentWallet is Ownable {
     }
 
     function changeLimit(uint256 _limit) external onlyOwner{
-        dailyLimit=_limit;
+        dailyLimit=_limit * 1 ether;
         emit DailyLimitChanged(_limit);
     }
 

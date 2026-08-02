@@ -23,7 +23,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use("/wallet", walletRoutes);
-app.use("/", freezeRoutes);
+app.use("/freeze", freezeRoutes);
 app.use("/policy", policyRoutes);
 app.use("/transactions",transactionRoutes);
 app.use("/agent",agentRoutes);

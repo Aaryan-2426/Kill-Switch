@@ -1,55 +1,47 @@
-exports.analyzePrompt = (prompt) => {
+exports.analyzePrompt = (tx) => {
 
-    prompt = prompt.toLowerCase();
+    const { receiver, amount, purpose } = tx;
 
     let risk = 5;
     let decision = "ALLOW";
-    let reason = "Normal Transaction";
+    let reason = "Transaction looks safe";
 
-    // Prompt Injection
-    if (
-        prompt.includes("ignore") ||
-        prompt.includes("override") ||
-        prompt.includes("bypass")
-    ) {
+    // Allowed wallets
+    const allowedWallets = [
+        "Vendor Wallet",
+        "Treasury Wallet",
+        "Savings Wallet"
+    ];
+
+    // Unknown wallet
+    if (!allowedWallets.includes(receiver)) {
 
         risk = 95;
         decision = "BLOCK";
-        reason = "Prompt Injection";
+        reason = "Receiver not in allowlist";
 
     }
 
-    // Huge transfer
-    if (
-        prompt.includes("5000") ||
-        prompt.includes("10000")
-    ) {
+    // Daily spending limit
+    else if (Number(amount) > 100) {
 
         risk = 90;
         decision = "BLOCK";
-        reason = "High Value Transfer";
+        reason = "Daily limit exceeded";
 
     }
 
-    // Hacker wallet
-    if (
-        prompt.includes("hacker")
+    // Suspicious purpose
+    else if (
+        purpose.toLowerCase().includes("hack") ||
+        purpose.toLowerCase().includes("scam") ||
+        purpose.toLowerCase().includes("steal") ||
+        purpose.toLowerCase().includes("attack")
     ) {
 
         risk = 92;
         decision = "BLOCK";
-        reason = "Unknown Receiver";
-
-    }
-
-    // Spam attack
-    if (
-        prompt.includes("20 transactions")
-    ) {
-
-        risk = 93;
-        decision = "BLOCK";
-        reason = "Transaction Spam";
+        reason = "Suspicious transaction purpose";
 
     }
 

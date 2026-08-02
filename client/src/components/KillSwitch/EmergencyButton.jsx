@@ -14,7 +14,7 @@ function EmergencyButton() {
 
       setLoading(true);
 
-      const res = await axios.post("http://localhost:5000/freeze");
+      const res = await axios.post("http://localhost:5000/freeze/freeze");
 
       toast.success(res.data.message);
       window.location.reload();
@@ -37,7 +37,7 @@ function EmergencyButton() {
 
       setLoading(true);
 
-      const res = await axios.post("http://localhost:5000/unfreeze");
+      const res = await axios.post("http://localhost:5000/freeze/unfreeze");
 
       toast.success(res.data.message);
       window.location.reload();

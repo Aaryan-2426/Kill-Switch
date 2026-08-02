@@ -10,9 +10,13 @@ exports.analyze = async (req, res) => {
 
     try {
 
-        const { prompt } = req.body;
+        const { receiver, amount, purpose } = req.body;
 
-        const ai = analyzePrompt(prompt);
+        const ai = analyzePrompt({
+            receiver,
+            amount,
+            purpose
+        });
 
         const wallet = {
             frozen: await contract.frozen()
@@ -47,6 +51,39 @@ exports.analyze = async (req, res) => {
             });
 
         }
+        let transferHash = null;
+
+            if (ai.decision === "ALLOW") {
+
+                const walletMap = {
+                    "Vendor Wallet": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+                    "Treasury Wallet": "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+                    "Savings Wallet": "0x90F79bf6EB2c4f870365E785982E1f101E93b906"
+                };
+
+                const { ethers } = require("ethers");
+
+                const tx = await contract.secureTransfer(
+                    walletMap[receiver],
+                    ethers.parseEther(amount.toString())
+                );
+
+                await tx.wait();
+
+                transferHash = tx.hash;
+
+                await Transaction.create({
+                    action: "TRANSFER",
+                    description: `${amount} ETH sent to ${receiver}`,
+                    txHash: tx.hash
+                });
+
+                await Log.create({
+                    action: "TRANSFER",
+                    description: `${amount} ETH sent`
+                });
+
+            }
 
         res.json({
 
@@ -56,7 +93,9 @@ exports.analyze = async (req, res) => {
 
             policy,
 
-            autoFrozen
+            autoFrozen,
+
+            transferHash
 
         });
 

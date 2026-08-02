@@ -56,7 +56,7 @@ function RemainingCard() {
 
                 ) : (
 
-                remaining+" ETH"
+                `${Number(remaining).toFixed(0)} ETH`
 
                 )}
 

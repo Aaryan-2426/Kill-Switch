@@ -1,4 +1,7 @@
-import { motion } from "framer-motion";
+import axios from "axios";
+import toast from "react-hot-toast";
+import 
+{ motion } from "framer-motion";
 import {
   FaEdit,
   FaWallet,
@@ -7,6 +10,32 @@ import {
 } from "react-icons/fa";
 
 function PolicyControls({ openLimitModal }) {
+  async function unfreezeWallet() {
+  try {
+
+    await axios.post("http://localhost:5000/freeze/unfreeze");
+
+    toast.success("Wallet Unfrozen");
+
+  } catch (err) {
+
+    toast.error("Unfreeze Failed");
+
+  }
+  }
+  async function freezeWallet() {
+  try {
+
+    await axios.post("http://localhost:5000/freeze/freeze");
+
+    toast.success("Wallet Frozen");
+
+  } catch (err) {
+
+    toast.error("Freeze Failed");
+
+  }
+  }
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,10 +65,21 @@ function PolicyControls({ openLimitModal }) {
           Toggle AI Protection
         </button>
 
-        <button className="flex items-center justify-center gap-3 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg transition">
-          <FaPowerOff />
-          Emergency Freeze
-        </button>
+        <button
+        onClick={freezeWallet}
+        className="flex items-center justify-center gap-3 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg transition"
+      >
+        <FaPowerOff />
+        Emergency Freeze
+      </button>
+
+      <button
+        onClick={unfreezeWallet}
+        className="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition"
+      >
+        <FaPowerOff />
+        Unfreeze Wallet
+      </button>
 
       </div>
     </motion.div>

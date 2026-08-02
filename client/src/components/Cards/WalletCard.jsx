@@ -1,7 +1,6 @@
 import { FaWallet } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { getWallet } from "../../services/walletService";
 
 function WalletCard() {
@@ -50,7 +49,7 @@ function WalletCard() {
 
       </div>
 
-      <p className="text-cyan-400 mt-3 font-semibold">
+      <div className="text-cyan-400 mt-3 font-semibold">
 
 {address==="Loading..." ? (
 
@@ -65,7 +64,7 @@ function WalletCard() {
 
 )}
 
-</p>
+</div>
 
     </motion.div>
   );
